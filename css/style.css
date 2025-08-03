@@ -48,7 +48,7 @@ body, main, html {
   border: 1px solid grey;
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
-  background-color: white;
+  background-color: #FFFAFA;
   outline: none;
 }
 
@@ -60,7 +60,7 @@ body, main, html {
   font-size: 23px;
   pointer-events: none;
   transition: 0.2s ease all;
-  background-color: white;
+  background-color: #FFFAFA;
   padding: 0 4px;
   transition: 0.5s;
   font-family: sans-serif;
@@ -339,6 +339,7 @@ body, main, html {
     }
 
 }
+
 
 
 
