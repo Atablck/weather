@@ -297,6 +297,10 @@ body, main, html {
         width: 220px;
     }
 
+    .search_bar {
+        margin-top: 30px;
+    }
+
     .tempr_block {
         margin: 25px 10px 23px;
     }
@@ -333,4 +337,5 @@ body, main, html {
     .hr_m {
         display: block;
     }
+
 }
