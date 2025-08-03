@@ -286,10 +286,6 @@ body, main, html {
 
 
 @media screen and (max-width: 600px) {
-
-    .wrap {
-        display: block;
-    }
   
     .back {
         width: 100%;
@@ -343,5 +339,6 @@ body, main, html {
     }
 
 }
+
 
 
