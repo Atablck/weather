@@ -25,6 +25,7 @@ body, main, html {
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: 1s;
 }
 
 
@@ -236,24 +237,12 @@ body, main, html {
 }
 
 .rt {
-    color: black;
+    color: #70b7fe;
     font-size: 34px;
     font-family: sans-serif;
     font-weight: 700;
 }
 
-/* .sec {
-    color: black;
-    font-size: 34px;
-    font-family: sans-serif;
-    font-weight: 700;
-}
-.secs {
-    color: black;
-    font-size: 34px;
-    font-family: sans-serif;
-    font-weight: 700;
-} */
 
 .miniIcon_all {
     width: 70px;
@@ -295,7 +284,7 @@ body, main, html {
     }
 
     .search_bar {
-        margin-top: 40px;
+        margin-top: 25px;
     }
 
     .input-field {
