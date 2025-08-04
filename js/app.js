@@ -219,35 +219,35 @@ document.querySelector('.dATomorrow_label').textContent = getDayLabel(2)
 
 
 const applyWeatherEffect = (selector, condition) => {
-  const wrap_container = document.querySelector('.wrap');
-  const back_container = document.querySelector('.back');
-  const rainContainer = document.getElementById('rain');
-  const isMobile = window.innerWidth <= 768;
+  const wrap_container = document.querySelector('.wrap')
+  const back_container = document.querySelector('.back')
+  const rainContainer = document.getElementById('rain')
+  const isMobile = window.innerWidth <= 768
 
   const clearRain = () => {
-    rainContainer.innerHTML = '';
-    wrap_container.style.background = '#F0EBE3';
-    back_container.style.background = '#FFFAFA';
+    rainContainer.innerHTML = ''
+    wrap_container.style.background = '#F0EBE3'
+    back_container.style.background = '#FFFAFA'
   };
 
   if (selector === '.ggg' && condition === 'Rain') {
-    rainContainer.innerHTML = '';
+    rainContainer.innerHTML = ''
 
     if (isMobile) {
-      back_container.style.background = '#1e1e2f';
+      back_container.style.background = '#1e1e2f'
     } else {
-      wrap_container.style.background = '#1e1e2f';
+      wrap_container.style.background = '#1e1e2f'
     }
 
     for (let i = 0; i < 100; i++) {
-      const drop = document.createElement('div');
-      drop.className = 'drop';
-      drop.style.left = `${Math.random() * 100}%`;
-      drop.style.animationDuration = `${0.5 + Math.random()}s`;
-      drop.style.animationDelay = `${Math.random() * 5}s`;
-      rainContainer.appendChild(drop);
+      const drop = document.createElement('div')
+      drop.className = 'drop'
+      drop.style.left = `${Math.random() * 100}%`
+      drop.style.animationDuration = `${0.5 + Math.random()}s`
+      drop.style.animationDelay = `${Math.random() * 5}s`
+      rainContainer.appendChild(drop)
     }
   } else if (selector === '.ggg') {
-    clearRain();
+    clearRain()
   }
-};
+}

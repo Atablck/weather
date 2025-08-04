@@ -9,6 +9,12 @@ body, main, html {
   overflow: hidden;
 }
 
+html, body {
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .wrap {
     display: flex;
     justify-content: center;
@@ -277,14 +283,22 @@ body, main, html {
 
 @media screen and (max-width: 600px) {
 
-    .back {
-        width: 100%;
-        height: 100vh;
-        border-radius: 0px;
+    body {
+        overflow: visible;
+        /* min-height: 100vh; */
     }
 
-    .search_bar {
-        margin-top: 40px;
+    .wrap {
+        display: block;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    .back {
+        width: 100%;
+        height: auto;
+        border-radius: 0px;
+        padding: 25px 0 20px 0;
     }
 
     .input-field {
@@ -292,7 +306,7 @@ body, main, html {
     }
 
     .tempr_block {
-        margin: 25px 10px 23px;
+        margin: 25px 20px 23px;
     }
 
     .desc_v {
@@ -304,16 +318,20 @@ body, main, html {
         margin: 0 0 20px 16px;
     }
 
+    .weather_cards {
+        /* margin-bottom: 200px;  */
+    }
+
     .column_dir {
-        width: 130px;
+        width: 125px;
     }
 
     .today_label {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .notToday_label {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .rt {
@@ -330,3 +348,85 @@ body, main, html {
 
 }
 
+
+
+
+@media screen and (max-width: 380px) {
+
+    body {
+        overflow: visible;
+        
+    }
+
+    .wrap {
+        display: block;
+        min-height: 100vh;
+        
+    }
+
+    .back {
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0px;
+        padding: 0;
+    }
+
+    .search_bar {
+        margin-top: 25px;
+    }
+
+    .input-field {
+        width: 220px;
+    }
+
+    .tempr_block {
+        margin: 25px 20px 23px;
+    }
+
+    .desc_v {
+        display: none;
+    }
+
+    .mob_v {
+        display: block;
+        margin: 0 0 20px 16px;
+    }
+
+    /* .weather_cards {
+        display: flex;
+        flex-direction: column;
+    } */
+
+    .column_dir {
+        width: 120px;
+    }
+
+    .today_card {
+        margin-left: 5px;
+    }
+
+    .a {
+        margin-right: 5px;
+    }
+
+    .today_label {
+        font-size: 20px;
+    }
+
+    .notToday_label {
+        font-size: 20px;
+    }
+
+    .rt {
+        font-size: 28px;
+    }
+
+    .miniIcon_all {
+        width: 55px;
+    }
+
+    .hr_m {
+        display: block;
+    }
+
+}
