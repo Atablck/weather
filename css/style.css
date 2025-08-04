@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-body, main, html {
-  height: 100%;
-  overflow: hidden;
-}
-
 html, body {
   min-height: 100%;
   overflow-x: hidden;
@@ -19,7 +14,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;    
+    min-height: 100vh;    
     background: #F0EBE3;
     transition: 0.5s;
 }
@@ -193,6 +188,7 @@ html, body {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    
 }
 
 .column_dir {
@@ -204,12 +200,11 @@ html, body {
 }
 
 .today_card {
-    border: 2px solid #7dd3fc; /* голубой */
+    border: 2px solid #7dd3fc; 
     background: linear-gradient(to bottom, #f0faff, #e0f2fe);
     border-radius: 16px;
     padding: 10px 25px;
     cursor: pointer;
-    /* transition: 0.5s; */
 }
 
 .notToday_card {
@@ -258,26 +253,36 @@ html, body {
 
 
 
-.rain {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+ .rain {
+     position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .drop {
-    position: absolute;
-    width: 2px;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.3);
-    bottom: 100%;
-    animation: fall linear infinite;
+  position: absolute;
+  width: 1.5px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1px;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 @keyframes fall {
-    to {
-        transform: translateY(120vh);
-    }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(150vh);
+  }
 }
 
 
@@ -285,7 +290,6 @@ html, body {
 
     body {
         overflow: visible;
-        /* min-height: 100vh; */
     }
 
     .wrap {
@@ -296,10 +300,20 @@ html, body {
 
     .back {
         width: 100%;
-        height: auto;
+        min-height: 100vh;
         border-radius: 0px;
         padding: 25px 0 20px 0;
+        position: relative;
+        /* overflow: hidden; */
     }
+
+    .rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
 
     .input-field {
         width: 220px;
@@ -318,9 +332,7 @@ html, body {
         margin: 0 0 20px 16px;
     }
 
-    .weather_cards {
-        /* margin-bottom: 200px;  */
-    }
+  
 
     .column_dir {
         width: 125px;
@@ -333,6 +345,14 @@ html, body {
     .notToday_label {
         font-size: 22px;
     }
+
+     .today_card {
+        margin-left: 14px;
+    }
+
+    .a {
+        margin-right: 14px;
+    }   
 
     .rt {
         font-size: 28px;
@@ -351,51 +371,11 @@ html, body {
 
 
 
-@media screen and (max-width: 380px) {
-
-    body {
-        overflow: visible;
-        
-    }
-
-    .wrap {
-        display: block;
-        min-height: 100vh;
-        
-    }
+@media screen and (max-width: 391px) {
 
     .back {
-        width: 100%;
-        min-height: 100vh;
-        border-radius: 0px;
-        padding: 0;
+        height: auto;
     }
-
-    .search_bar {
-        margin-top: 25px;
-    }
-
-    .input-field {
-        width: 220px;
-    }
-
-    .tempr_block {
-        margin: 25px 20px 23px;
-    }
-
-    .desc_v {
-        display: none;
-    }
-
-    .mob_v {
-        display: block;
-        margin: 0 0 20px 16px;
-    }
-
-    /* .weather_cards {
-        display: flex;
-        flex-direction: column;
-    } */
 
     .column_dir {
         width: 120px;
@@ -415,18 +395,6 @@ html, body {
 
     .notToday_label {
         font-size: 20px;
-    }
-
-    .rt {
-        font-size: 28px;
-    }
-
-    .miniIcon_all {
-        width: 55px;
-    }
-
-    .hr_m {
-        display: block;
     }
 
 }

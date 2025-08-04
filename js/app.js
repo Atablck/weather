@@ -172,16 +172,16 @@ let updateMiniWeather = (forecastList, daysAhead = 1, tempSelector, iconSelector
 
 
 const getDayLabel = (daysAhead) => {
-  const now = new Date()
-  const targetDate = new Date(now)
-  targetDate.setDate(now.getDate() + daysAhead)
+    const now = new Date()
+    const targetDate = new Date(now)
+    targetDate.setDate(now.getDate() + daysAhead)
 
-  if (daysAhead === 0) return "Today"
+    if (daysAhead === 0) return "Today"
 
-  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  const dayIndex = targetDate.getDay()
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const dayIndex = targetDate.getDay()
 
-  return daysOfWeek[dayIndex]
+    return daysOfWeek[dayIndex]
 }
 
 document.querySelector('.tomorrow_label').textContent = getDayLabel(1)
@@ -189,65 +189,37 @@ document.querySelector('.dATomorrow_label').textContent = getDayLabel(2)
 
 
 
-
-// const applyWeatherEffect = (selector, condition) => {
-//   const wrap_container = document.querySelector('.wrap')
-//   const rainContainer = document.getElementById('rain')
-
-//   const clearRain = () => {
-//     rainContainer.innerHTML = ''
-//     wrap_container.style.background = '#F0EBE3'
-//   }
-
-//   if (selector === '.ggg' && condition === 'Rain') {
-//     wrap_container.style.background = '#1e1e2f'
-//     rainContainer.innerHTML = ''
-
-//     for (let i = 0; i < 100; i++) {
-//       const drop = document.createElement('div')
-//       drop.className = 'drop'
-//       drop.style.left = `${Math.random() * 100}%`
-//       drop.style.animationDuration = `${0.5 + Math.random()}s`
-//       drop.style.animationDelay = `${Math.random() * 5}s`
-//       rainContainer.appendChild(drop)
-//     }
-//   } else if (selector === '.ggg') {
-//     clearRain()
-//   }
-// }
-
-
-
 const applyWeatherEffect = (selector, condition) => {
-  const wrap_container = document.querySelector('.wrap')
-  const back_container = document.querySelector('.back')
-  const rainContainer = document.getElementById('rain')
-  const isMobile = window.innerWidth <= 768
+    const wrap_container = document.querySelector('.wrap')
+    const back_container = document.querySelector('.back')
+    const rainContainer = document.getElementById('rain')
+    const isMobile = window.innerWidth <= 768
 
-  const clearRain = () => {
-    rainContainer.innerHTML = ''
-    wrap_container.style.background = '#F0EBE3'
-    back_container.style.background = '#FFFAFA'
-  };
-
-  if (selector === '.ggg' && condition === 'Rain') {
-    rainContainer.innerHTML = ''
-
-    if (isMobile) {
-      back_container.style.background = '#1e1e2f'
-    } else {
-      wrap_container.style.background = '#1e1e2f'
+    const clearRain = () => {
+        rainContainer.innerHTML = ''
+        wrap_container.style.background = '#F0EBE3'
+        back_container.style.background = '#FFFAFA'
     }
 
-    for (let i = 0; i < 100; i++) {
-      const drop = document.createElement('div')
-      drop.className = 'drop'
-      drop.style.left = `${Math.random() * 100}%`
-      drop.style.animationDuration = `${0.5 + Math.random()}s`
-      drop.style.animationDelay = `${Math.random() * 5}s`
-      rainContainer.appendChild(drop)
-    }
-  } else if (selector === '.ggg') {
+    if (selector === '.ggg' && condition === 'Rain') {
+        rainContainer.innerHTML = ''
+
+        if (isMobile) {
+            back_container.style.background = '#1e1e2f'
+        } else {
+            wrap_container.style.background = '#1e1e2f'
+        }
+
+        for (let i = 0; i < 100; i++) {
+            const drop = document.createElement('div')
+            drop.className = 'drop'
+            drop.style.left = `${Math.random() * 100}%`
+            drop.style.top = `${-100 - Math.random() * 300}px`
+            drop.style.animationDuration = `${1 + Math.random()}s`
+            drop.style.animationDelay = `${Math.random() * 5}s`
+            rainContainer.appendChild(drop)
+        }
+    } else if (selector === '.ggg') {
     clearRain()
-  }
+    }
 }
