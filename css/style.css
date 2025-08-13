@@ -200,12 +200,13 @@ html, body {
 }
 
 .today_card {
-    border: 2px solid #7dd3fc; 
+    border: 2px solid #7dd3fc !important; 
     background: linear-gradient(to bottom, #f0faff, #e0f2fe);
     border-radius: 16px;
     padding: 10px 25px;
     cursor: pointer;
-}
+    transition: 0.7s;
+}   
 
 .notToday_card {
     border: 1px solid #b0b0b0;
@@ -346,12 +347,11 @@ html, body {
         font-size: 22px;
     }
 
-     .today_card {
-        margin-left: 14px;
-    }
-
     .a {
         margin-right: 14px;
+    }   
+    .b {
+        margin-left: 14px;
     }   
 
     .rt {
@@ -368,8 +368,7 @@ html, body {
 
 }
 
-
-
+    
 
 @media screen and (max-width: 391px) {
 

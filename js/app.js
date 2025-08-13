@@ -14,12 +14,16 @@ let city_name = document.querySelector('.city_name')
 
 const apiKey = '9d28948efacd5e444984149710df1a4c'
 
-
+let currentCity = ''
 search_btn.addEventListener('click', () => {
     const rawCity = input.value.trim()
     const city = rawCity.charAt(0).toUpperCase() + rawCity.slice(1).toLowerCase()
     input.value = ''
 
+    currentCity = city
+
+    // console.log(currentCity);
+    
     if (!city) {
         showError('Enter city name')
         return
@@ -28,6 +32,7 @@ search_btn.addEventListener('click', () => {
     getWeather(city)
     getMiniWeather(city)
 })
+
 
 input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -131,6 +136,7 @@ let showError = (message) => {
 let sec = document.querySelector('.sec')
 let secs = document.querySelector('.secs')
 
+let forecastList = []
 
 let getMiniWeather = async (city) => {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&lang=en`
@@ -141,7 +147,7 @@ let getMiniWeather = async (city) => {
     const data = await response.json()
     // console.log(data)
 
-    const forecastList = data.list
+    forecastList = data.list
 
     updateMiniWeather(forecastList, 1, '.sec', '.gg')
     updateMiniWeather(forecastList, 2, '.secs', '.g')
@@ -223,3 +229,76 @@ const applyWeatherEffect = (selector, condition) => {
     clearRain()
     }
 }
+
+
+// const cards = document.querySelectorAll('.column_dir')
+
+// cards.forEach(card => {
+//     card.addEventListener('click', () => {
+//         cards.forEach(c => c.classList.remove('today_card'))
+//         cards.forEach(c => c.classList.add('notToday_card'))
+
+//         card.classList.add('today_card')
+//         card.classList.remove('notToday_card')
+//     })
+// })
+
+
+
+
+
+
+const updateMainCardByDay = (forecastList, daysAhead) => {
+  const now = new Date()
+  const targetDate = new Date(now)
+  targetDate.setDate(targetDate.getDate() + daysAhead)
+
+  const yyyy = targetDate.getFullYear()
+  const mm = String(targetDate.getMonth() + 1).padStart(2, '0')
+  const dd = String(targetDate.getDate()).padStart(2, '0')
+
+  const targetTime = `${yyyy}-${mm}-${dd} 12:00:00`
+  const data = forecastList.find(item => item.dt_txt === targetTime)
+
+  if (!data) return
+
+
+  document.querySelector('.celsius').textContent = Math.round(data.main.temp) + '°C'
+  document.querySelector('.weather_descr').textContent = data.weather[0].description
+  document.querySelector('.feels_like').textContent = 'Feels like ' + Math.round(data.main.feels_like) + '°C'
+  document.querySelector('.w').textContent = Math.round(data.wind.speed) + ' m/s'
+  document.querySelector('.h').textContent = data.main.humidity + '%'
+  document.querySelector('.p').textContent = data.main.pressure + ' hPa'
+
+  updateWeatherIcons(data, '.ggg');
+  applyWeatherEffect('.ggg', data.weather[0].main)
+};
+
+
+
+const miniCards = document.querySelectorAll('.column_dir');
+
+miniCards.forEach(card => {
+  card.addEventListener('click', () => {
+    
+    miniCards.forEach(c => c.classList.remove('today_card'))
+    miniCards.forEach(c => c.classList.add('notToday_card'))
+    card.classList.add('today_card')
+    card.classList.remove('notToday_card')
+
+    const dayOffset = Number(card.dataset.day);
+
+    if (dayOffset === 0) {
+       getWeather(currentCity) 
+    } else {
+      updateMainCardByDay(forecastList, dayOffset)
+    }
+
+    document.querySelectorAll('.column_dir').forEach(card => console.log(card.dataset.day))
+    console.log('Выбран день:', dayOffset)
+    console.log('Текущий город:', currentCity)
+    console.log('forecastList[0]:', forecastList[0])
+  })
+})
+
+
