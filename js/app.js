@@ -256,9 +256,15 @@ const updateMainCardByDay = (forecastList, daysAhead) => {
     document.querySelector('.weather_descr').textContent = data.weather[0].main
     document.querySelector('.feels_like').textContent = 'Feels like ' + Math.round(data.main.feels_like) + '°C'
 
-    document.querySelector('.w').textContent = Math.round(data.wind.speed) + ' m/s'
-    document.querySelector('.h').textContent = data.main.humidity + '%'
-    document.querySelector('.p').textContent = data.main.pressure + ' hPa'
+    wind.forEach(el => {
+        el.textContent = Math.round(data.wind.speed) + ' m/s'
+    })
+    humidity.forEach(el => {
+        el.textContent = data.main.humidity + '%'
+    })
+    pressure.forEach(el => {
+        el.textContent = data.main.pressure + ' hPa'
+    })
 
     updateWeatherIcons(data, '.gggg')
     applyWeatherEffect('.gggg', data.weather[0].main)
