@@ -11,6 +11,7 @@ let search_btn = document.querySelector('.search_btn')
 
 let city_name = document.querySelector('.city_name')
 
+let new_active = document.querySelector('.b')
 
 const apiKey = '9d28948efacd5e444984149710df1a4c'
 
@@ -21,13 +22,19 @@ search_btn.addEventListener('click', () => {
     input.value = ''
 
     currentCity = city
-
-    // console.log(currentCity);
     
     if (!city) {
         showError('Enter city name')
         return
     }
+
+
+    miniCards.forEach(c => {
+        c.classList.remove('today_card')
+        c.classList.add('notToday_card')
+    })
+
+    new_active.classList.add('today_card')
 
     getWeather(city)
     getMiniWeather(city)
@@ -49,7 +56,6 @@ const getWeather = async (city) => {
         if (!response.ok) throw new Error('City not found')
         
         const data = await response.json()
-        // console.log(data);
         
         updateCity(data)
         updateMainWeather(data)
@@ -65,10 +71,7 @@ let updateCity = (data) => {
 }
 
 
-
-
 let updateMainWeather = (data) => {
-    // celsius.textContent = Math.round(data.main.temp) + '°C'
 
     celsius.forEach(el => {
         el.textContent = Math.round(data.main.temp) + '°C'
@@ -87,7 +90,6 @@ const weatherIcons = {
     Clear: 'img/sun.png',
     Clouds: 'img/clouds.png',
     Rain: 'img/rain.png',
-    // Rain: 'img/rain2.svg'
 }
 
 
@@ -149,7 +151,6 @@ let getMiniWeather = async (city) => {
     if (!response.ok) throw new Error('City not found')
 
     const data = await response.json()
-    // console.log(data)
 
     forecastList = data.list
 
@@ -229,63 +230,61 @@ const applyWeatherEffect = (selector, condition) => {
             drop.style.animationDelay = `${Math.random() * 5}s`
             rainContainer.appendChild(drop)
         }
-    } else if (selector === '.gggg') {
-    clearRain()
-    }
+    }   else if (selector === '.gggg') {
+            clearRain()
+        }
 }
 
 
 
-
 const updateMainCardByDay = (forecastList, daysAhead) => {
-  const now = new Date()
-  const targetDate = new Date(now)
-  targetDate.setDate(targetDate.getDate() + daysAhead)
+    const now = new Date()
+    const targetDate = new Date(now)
+    targetDate.setDate(targetDate.getDate() + daysAhead)
 
-  const yyyy = targetDate.getFullYear()
-  const mm = String(targetDate.getMonth() + 1).padStart(2, '0')
-  const dd = String(targetDate.getDate()).padStart(2, '0')
+    const yyyy = targetDate.getFullYear()
+    const mm = String(targetDate.getMonth() + 1).padStart(2, '0')
+    const dd = String(targetDate.getDate()).padStart(2, '0')
 
-  const targetTime = `${yyyy}-${mm}-${dd} 12:00:00`
-  const data = forecastList.find(item => item.dt_txt === targetTime)
+    const targetTime = `${yyyy}-${mm}-${dd} 12:00:00`
+    const data = forecastList.find(item => item.dt_txt === targetTime)
 
-  if (!data) return
-
-
-  document.querySelector('.celsius').textContent = Math.round(data.main.temp) + '°C'
-  document.querySelector('.weather_descr').textContent = data.weather[0].description
-  document.querySelector('.feels_like').textContent = 'Feels like ' + Math.round(data.main.feels_like) + '°C'
-  document.querySelector('.w').textContent = Math.round(data.wind.speed) + ' m/s'
-  document.querySelector('.h').textContent = data.main.humidity + '%'
-  document.querySelector('.p').textContent = data.main.pressure + ' hPa'
-
-  updateWeatherIcons(data, '.gggg');
-  applyWeatherEffect('.gggg', data.weather[0].main)
-};
+    if (!data) return
 
 
+    document.querySelector('.celsius').textContent = Math.round(data.main.temp) + '°C'
+    document.querySelector('.weather_descr').textContent = data.weather[0].main
+    document.querySelector('.feels_like').textContent = 'Feels like ' + Math.round(data.main.feels_like) + '°C'
 
-const miniCards = document.querySelectorAll('.column_dir');
+    document.querySelector('.w').textContent = Math.round(data.wind.speed) + ' m/s'
+    document.querySelector('.h').textContent = data.main.humidity + '%'
+    document.querySelector('.p').textContent = data.main.pressure + ' hPa'
+
+    updateWeatherIcons(data, '.gggg')
+    applyWeatherEffect('.gggg', data.weather[0].main)
+}
+
+
+
+const miniCards = document.querySelectorAll('.column_dir')
 
 miniCards.forEach(card => {
-  card.addEventListener('click', () => {
-    
-    miniCards.forEach(c => c.classList.remove('today_card'))
-    miniCards.forEach(c => c.classList.add('notToday_card'))
-    card.classList.add('today_card')
-    card.classList.remove('notToday_card')
+    card.addEventListener('click', () => {
 
-    const dayOffset = Number(card.dataset.day);
+        miniCards.forEach(c => {
+            c.classList.remove('today_card')
+            c.classList.add('notToday_card')
+        })
 
-    if (dayOffset === 0) {
-       getWeather(currentCity) 
-    } else {
-      updateMainCardByDay(forecastList, dayOffset)
-    }
+        card.classList.add('today_card')
+        card.classList.remove('notToday_card')
 
-    document.querySelectorAll('.column_dir').forEach(card => console.log(card.dataset.day))
-    console.log('Выбран день:', dayOffset)
-    console.log('Текущий город:', currentCity)
-    console.log('forecastList[0]:', forecastList[0])
-  })
+        const dayOffset = Number(card.dataset.day)
+
+        if (dayOffset === 0) {
+            getWeather(currentCity) 
+        } else {
+            updateMainCardByDay(forecastList, dayOffset)
+        }
+    })
 })
