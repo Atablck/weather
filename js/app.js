@@ -64,6 +64,9 @@ let updateCity = (data) => {
     city_name.textContent = data.name + ', ' + data.sys.country
 }
 
+
+
+
 let updateMainWeather = (data) => {
     // celsius.textContent = Math.round(data.main.temp) + '°C'
 
@@ -75,6 +78,7 @@ let updateMainWeather = (data) => {
 
     feels_like.textContent = 'Feels like ' + Math.round(data.main.feels_like) + '°C'
 
+    updateWeatherIcons(data, '.gggg')
     updateWeatherIcons(data, '.ggg')
 }
 
@@ -207,7 +211,7 @@ const applyWeatherEffect = (selector, condition) => {
         back_container.style.background = '#FFFAFA'
     }
 
-    if (selector === '.ggg' && condition === 'Rain') {
+    if (selector === '.gggg' && condition === 'Rain') {
         rainContainer.innerHTML = ''
 
         if (isMobile) {
@@ -225,25 +229,10 @@ const applyWeatherEffect = (selector, condition) => {
             drop.style.animationDelay = `${Math.random() * 5}s`
             rainContainer.appendChild(drop)
         }
-    } else if (selector === '.ggg') {
+    } else if (selector === '.gggg') {
     clearRain()
     }
 }
-
-
-// const cards = document.querySelectorAll('.column_dir')
-
-// cards.forEach(card => {
-//     card.addEventListener('click', () => {
-//         cards.forEach(c => c.classList.remove('today_card'))
-//         cards.forEach(c => c.classList.add('notToday_card'))
-
-//         card.classList.add('today_card')
-//         card.classList.remove('notToday_card')
-//     })
-// })
-
-
 
 
 
@@ -270,8 +259,8 @@ const updateMainCardByDay = (forecastList, daysAhead) => {
   document.querySelector('.h').textContent = data.main.humidity + '%'
   document.querySelector('.p').textContent = data.main.pressure + ' hPa'
 
-  updateWeatherIcons(data, '.ggg');
-  applyWeatherEffect('.ggg', data.weather[0].main)
+  updateWeatherIcons(data, '.gggg');
+  applyWeatherEffect('.gggg', data.weather[0].main)
 };
 
 
@@ -300,5 +289,3 @@ miniCards.forEach(card => {
     console.log('forecastList[0]:', forecastList[0])
   })
 })
-
-
