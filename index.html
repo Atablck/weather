@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>weather</title>
+</head>
+<body>
+    
+    <div class="wrap">
+        
+        <div class="back">
+            
+            <div class="search_bar">
+
+                <div class="input-group">
+                    <input type="text" id="city" class="input-field" placeholder=" " required />
+                    <label for="city" class="floating-label">Enter your city</label>
+                </div>
+
+
+                <button class="search_btn">
+                    <img src="img/search.png" alt="" class="search_img">
+                </button>
+
+            </div>
+            
+
+            <p class="city_name">Enter your city</p>
+
+            <div class="tempr_block">
+
+                <div class="metric_descr desc_v">
+
+                    <div class="metric">
+                        <p class="metric_label">Wind: </p>
+                        <p class="metric_value w">- m/s</p>
+                    </div>
+
+                    <div class="metric">
+                        <p class="metric_label">Humidity: </p>
+                        <p class="metric_value h">-%</p>
+                    </div>
+
+                    <div class="metric">
+                        <p class="metric_label">Pressure: </p>
+                        <p class="metric_value p">- hPa</p>
+                    </div>
+
+                </div>
+
+                <div class="weather_pic">
+                    <img src="img/default.png" alt="" class="gggg">
+                </div>
+
+                <div class="tempr_info">
+                    <p class="celsius">-°C</p>
+                    <p class="weather_descr">-</p>
+                    <p class="feels_like">- 24°C</p>
+                </div>
+
+            </div>
+
+
+            <hr style="width: 97%; margin-left: 8px;" class="hr_d">
+
+
+            <div class="metric_descr mob_v">
+
+                <div class="metric">
+                    <p class="metric_label">Wind: </p>
+                    <p class="metric_value w">- m/s</p>
+                </div>
+
+                <div class="metric">
+                    <p class="metric_label">Humidity: </p>
+                    <p class="metric_value h">-%</p>
+                </div>
+
+                <div class="metric">
+                    <p class="metric_label">Pressure: </p>
+                    <p class="metric_value p">- hPa</p>
+                </div>
+
+            </div>
+
+            <hr style="width: 97%; margin-left: 6px;" class="hr_m">
+
+
+            <div class="weather_cards">
+
+                <div class="column_dir notToday_card today_card b" data-day="0">
+                    <p class="today_label">Today</p>
+                    <img src="img/default.png" alt="" class="ggg miniIcon_all">
+                    <p class="celsius rt">-°C</p>
+                </div>
+
+                <div class="notToday_card column_dir" data-day="1">
+                    <p class="tomorrow_label notToday_label"></p>
+                    <img src="img/default.png" alt="" class="gg miniIcon_all">
+                    <p class="sec rt">-°C</p>
+                </div>
+
+                <div class="notToday_card column_dir a" data-day="2">
+                    <p class="dATomorrow_label notToday_label"></p>
+                    <img src="img/default.png" alt="" class="g miniIcon_all">
+                    <p class="secs rt">-°C</p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="rain" id="rain"></div>
+        <div id="snow" class="snow"></div>
+    </div>
+    
+    
+</body>
+<script src="js/app.js"></script>
+</html>
